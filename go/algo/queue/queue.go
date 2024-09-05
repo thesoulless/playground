@@ -14,6 +14,7 @@ type node[T any] struct {
 }
 
 type Queue[T any] struct {
+	len  int
 	head *node[T]
 	tail *node[T]
 }
@@ -25,6 +26,8 @@ func New[T any]() *Queue[T] {
 }
 
 func (q *Queue[T]) Enqueue(val T) {
+	q.len++
+
 	n := &node[T]{
 		val: val,
 	}
@@ -52,6 +55,8 @@ func (q *Queue[T]) Dequeue() (T, error) {
 		return res, ErrEmptyQueue
 	}
 
+	q.len--
+
 	h := *q.head
 	q.head.next = nil
 	q.head = h.next
@@ -70,6 +75,10 @@ func (q *Queue[T]) Peek() (T, error) {
 	}
 
 	return q.head.val, nil
+}
+
+func (q *Queue[T]) Length() int {
+	return q.len
 }
 
 /*func (q *Queue[T]) Visit() {
