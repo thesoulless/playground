@@ -1,4 +1,4 @@
-package bree
+package btree
 
 import (
 	"cmp"
@@ -24,17 +24,16 @@ func bfs[T cmp.Ordered](head *Node[T], needle T) bool {
 			return false
 		}
 
+		if curr == nil {
+			continue
+		}
+
 		if curr.Value == needle {
 			return true
 		}
 
-		if curr.Left != nil {
-			q.Enqueue(curr.Left)
-		}
-
-		if curr.Right != nil {
-			q.Enqueue(curr.Right)
-		}
+		q.Enqueue(curr.Left)
+		q.Enqueue(curr.Right)
 	}
 
 	return false

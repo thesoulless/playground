@@ -1,4 +1,4 @@
-package bree_test
+package btree_test
 
 import (
 	"testing"
@@ -13,6 +13,7 @@ func Test_BFS(t *testing.T) {
 	head1.Left.Value = 2
 	head1.Right = &btree.Node[int]{}
 	head1.Right.Value = 3
+	head1.Left.Left = nil
 
 	tests := []struct {
 		name   string

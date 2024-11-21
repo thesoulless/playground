@@ -1,8 +1,10 @@
-package bree
+package btree
 
 import "cmp"
 
 // DFS
+// DFS preserves the shape of the tree
+// @TODO: use a stack
 
 func VisitInorder[T cmp.Ordered](head *Node[T]) []T {
 	return visitInorder(head)

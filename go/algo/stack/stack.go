@@ -1,6 +1,10 @@
 package stack
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+	"strings"
+)
 
 var (
 	ErrEmptyStack = errors.New("stack is empty")
@@ -25,6 +29,19 @@ type Stack[T any] struct {
 
 func New[T any]() *Stack[T] {
 	return &Stack[T]{}
+}
+
+func (s *Stack[T]) String() string {
+	var sb strings.Builder
+	sb.WriteString("[")
+	for n := s.head; n != nil; n = n.next {
+		sb.WriteString(fmt.Sprintf("%v", n.val))
+		if n.next != nil {
+			sb.WriteString(", ")
+		}
+	}
+	sb.WriteString("]")
+	return sb.String()
 }
 
 func (s *Stack[T]) Push(val T) {
@@ -63,4 +80,8 @@ func (s *Stack[T]) Peek() (T, error) {
 	}
 
 	return s.head.val, nil
+}
+
+func (s *Stack[T]) Length() int {
+	return s.Lenght
 }

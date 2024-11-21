@@ -101,6 +101,32 @@ func (ll *LinkedList[T]) RemoveAt(i int) error {
 	return nil
 }
 
+func (ll *LinkedList[T]) RemoveNode(node *Node[T]) error {
+	if node == nil {
+		return ErrNodeNotFound
+	}
+
+	ll.length--
+
+	if node == ll.head {
+		ll.head = node.next
+	}
+
+	if node == ll.tail {
+		ll.tail = node.prev
+	}
+
+	if node.prev != nil {
+		node.prev.next = node.next
+	}
+
+	if node.next != nil {
+		node.next.prev = node.prev
+	}
+
+	return nil
+}
+
 func (ll *LinkedList[T]) Remove(val T) error {
 	h := ll.head
 
@@ -187,4 +213,17 @@ func (ll *LinkedList[T]) Get(i int) (T, error) {
 	}
 
 	return res.Value, nil
+}
+
+func (ll *LinkedList[T]) GetNode(i int) (*Node[T], error) {
+	if i < 0 || i >= ll.length {
+		return nil, ErrIndexOutOfRange
+	}
+
+	res := ll.head
+	for j := 0; j < i; j++ {
+		res = res.next
+	}
+
+	return res, nil
 }

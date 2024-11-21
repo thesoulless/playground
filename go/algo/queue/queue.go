@@ -2,6 +2,8 @@ package queue
 
 import (
 	"errors"
+	"fmt"
+	"strings"
 )
 
 var (
@@ -23,6 +25,19 @@ func New[T any]() *Queue[T] {
 	q := Queue[T]{}
 
 	return &q
+}
+
+func (q *Queue[T]) String() string {
+	var sb strings.Builder
+	sb.WriteString("[")
+	for n := q.head; n != nil; n = n.next {
+		sb.WriteString(fmt.Sprintf("%v", n.val))
+		if n.next != nil {
+			sb.WriteString(", ")
+		}
+	}
+	sb.WriteString("]")
+	return sb.String()
 }
 
 func (q *Queue[T]) Enqueue(val T) {
@@ -80,19 +95,3 @@ func (q *Queue[T]) Peek() (T, error) {
 func (q *Queue[T]) Length() int {
 	return q.len
 }
-
-/*func (q *Queue[T]) Visit() {
-	h := q.head
-
-	if h == nil {
-		fmt.Printf("head was empty\n")
-	}
-
-	for h != nil {
-		fmt.Printf("val: %v\n", h.val)
-		h = h.next
-	}
-
-	fmt.Printf("head: %+v\n", q.head)
-	fmt.Printf("tail: %+v\n", q.tail)
-}*/

@@ -223,7 +223,7 @@ func TestLinkedList_RemoveAt(t *testing.T) {
 				return
 			}
 
-			t.Logf("TestLinkedList_RemoveAt: %s passed. Expected: %d, Got: %d. Expected Err: %t, got Err: %v",
+			t.Logf("TestLinkedList_RemoveAt: \"%s\" passed. Expected: %d, Got: %d. Expected Err: %t, got Err: %v",
 				tt.name, tt.want, v, tt.wantErr2, err)
 		})
 	}
@@ -460,7 +460,7 @@ func TestLinkedList_Prepend(t *testing.T) {
 				return
 			}
 
-			t.Logf("TestLinkedList_Prepend: %s passed. Expected: %d, Got: %d. Expected Err: %t, got Err: %v",
+			t.Logf("TestLinkedList_Prepend: \"%s\" passed. Expected: %d, Got: %d. Expected Err: %t, got Err: %v",
 				tt.name, tt.want, v, tt.wanrErr, err)
 		})
 	}

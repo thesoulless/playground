@@ -1,4 +1,4 @@
-package bree_test
+package btree_test
 
 import (
 	"testing"

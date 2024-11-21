@@ -1,4 +1,4 @@
-package bree
+package btree
 
 import "cmp"
 
